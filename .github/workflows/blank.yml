@@ -1,36 +1,14 @@
-# This is a basic workflow to help you get started with Actions
-
-name: CI
-
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+ # Nama artefak yang akan diunduh. Jika tidak ditentukan, semua artefak untuk proses tersebut akan diunduh.
+    nama: # opsional
+    # Jalur tujuan. Mendukung perluasan tilde dasar. Defaultnya adalah $GITHUB_WORKSPACE
+    jalur: # opsional
+    # Pola glob yang cocok dengan artefak yang harus diunduh. Diabaikan jika nama ditentukan.
+    pola: # opsional
+    # Bila beberapa artefak dicocokkan, ini akan mengubah perilaku direktori tujuan. Jika benar, artefak yang diunduh akan berada di direktori yang sama yang ditentukan oleh jalur. Jika salah, artefak yang diunduh akan diekstrak ke direktori bernama individual dalam jalur yang ditentukan.
+    merge-multiple: # opsional, defaultnya salah
+    # Token GitHub yang digunakan untuk mengautentikasi dengan API GitHub. Ini diperlukan saat mengunduh artefak dari repositori lain atau dari alur kerja yang berbeda. Jika ini tidak ditentukan, tindakan akan mencoba mengunduh artefak dari repositori saat ini dan alur kerja saat ini.
+    github-token: # opsional
+    # Pemilik repositori dan nama repositori digabungkan dengan "/". Jika github-token ditentukan, ini adalah repositori tempat artefak akan diunduh.
+    repositori: # opsional, defaultnya adalah ${{ github.repository }}
+    # ID alur kerja tempat artefak unduhan yang diinginkan diunggah. Jika github-token ditentukan, ini adalah alur kerja tempat artefak akan diunduh.
+    run-id: # opsional, defaultnya adalah ${{ github.run_id }}
